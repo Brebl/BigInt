@@ -28,7 +28,7 @@ namespace brb
 	{
 		try
 		{
-			Calc answ = *this;	//in case of throw, use *this
+			Calc answ = *this;	//in case of throw, no modifications to *this
 			answ.init(num2, Calculation::Add);
 			//addition if same signs
 			if (answ.sign_ == num2.sign_) {

@@ -18,7 +18,7 @@ namespace brb
 	{
 		try
 		{
-			Calc answ = *this;	//in case of throw, use *this
+			Calc answ = *this;	//in case of throw, no modifications to *this
 			answ.init(num2, Calculation::Mul);
 			answ.mul_alg(num2);
 			answ.finish();
