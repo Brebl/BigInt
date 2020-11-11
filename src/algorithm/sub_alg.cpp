@@ -16,7 +16,7 @@ namespace brb
 				num2.num_ = org.num_;
 			}
 		}
-		//reverse numbers
+		//number backwards because emplace_back
 		std::reverse(num_.begin(), num_.end());
 		std::reverse(num2.num_.begin(), num2.num_.end());
 
@@ -33,11 +33,10 @@ namespace brb
 		while (!num_.empty() && num_.back() == 0)
 			num_.pop_back();
 
-		//check for empty vector
+		//empty vector not allowed
 		if (num_.empty())
 			num_.emplace_back(0);
 
-		//reverse right way around
 		std::reverse(num_.begin(), num_.end());
 	}
 }

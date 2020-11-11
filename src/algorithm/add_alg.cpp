@@ -8,7 +8,7 @@ namespace brb
 {
 	void Calc::add_alg(Calc& n2)
 	{
-		//numbers backwards
+		//numbers backwards because emplace_back
 		std::reverse(num_.begin(), num_.end());
 		std::reverse(n2.num_.begin(), n2.num_.end());
 
@@ -48,7 +48,6 @@ namespace brb
 			}
 		}
 
-		//numbers right way around
 		std::reverse(num_.begin(), num_.end());
 	}
 }

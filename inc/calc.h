@@ -13,7 +13,7 @@ Todo:
 */
 
 #pragma once
-#include <brb2.h>
+#include "brb2.h"
 
 namespace brb
 {
@@ -36,7 +36,7 @@ namespace brb
 			Equal
 		};
 
-		//variables
+		//data members
 		Vector	num_;			// number
 		Sign	sign_;			// +/-
 		Sign	final_sign_;	// sign after calculations

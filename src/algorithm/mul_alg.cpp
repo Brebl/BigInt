@@ -22,7 +22,7 @@ namespace brb
 		Vector answ;
 		answ.reserve(num_.size() + num2.num_.size());
 
-		//reverse numbers
+		//numbers backwards because emplace_back
 		std::reverse(num_.begin(), num_.end());
 		std::reverse(num2.num_.begin(), num2.num_.end());		
 
@@ -47,7 +47,7 @@ namespace brb
 			}
 			carry(answ);	//prevent overflow with large numbers
 		}
-		//finish
+	
 		std::reverse(answ.begin(), answ.end());
 		this->num_ = answ;
 	}
