@@ -25,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\algorithm\carry.cpp" />
+    <ClCompile Include="src\algorithm\downsize.cpp" />
     <ClCompile Include="src\algorithm\init.cpp" />
     <ClCompile Include="src\algorithm\calc.cpp" />
     <ClCompile Include="src\algorithm\bs.cpp" />

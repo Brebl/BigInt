@@ -40,6 +40,9 @@ namespace brb
 			divisor_ = c_div.num_;
 		}
 		
+		//downsizing
+		downsize(*this);
+
 		this->final_sign_ = fi_sign;
 	}
 }

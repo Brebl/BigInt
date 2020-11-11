@@ -18,16 +18,9 @@ namespace brb
 	{
 		try
 		{
-			//use this as a backup
-			Calc answ = *this;
-
-			//init
+			Calc answ = *this;	//in case of throw, use *this
 			answ.init(num2, Calculation::Mul);
-
-			//multiplication
 			answ.mul_alg(num2);
-
-			//finishing touch
 			answ.finish();
 			*this = answ;
 			return true;

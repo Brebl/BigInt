@@ -9,7 +9,7 @@ Todo:
 -multiply with fractions
 -add with fractions
 -substract with fractions
--add test-functions
+-add test cases
 */
 
 #pragma once
@@ -56,6 +56,7 @@ namespace brb
 		void mul_alg(Calc&);
 		void div_alg(Calc&);
 		void carry(Vector&);
+		void downsize(Calc&);
 
 	public:
 		Calc(std::string_view = "0", std::string_view = "", std::string_view = "0", std::string_view = "0");

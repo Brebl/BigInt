@@ -28,12 +28,8 @@ namespace brb
 	{
 		try
 		{
-			//use this as a backup
-			Calc answ = *this;
-
-			//init
+			Calc answ = *this;	//in case of throw, use *this
 			answ.init(num2, Calculation::Add);
-
 			//addition if same signs
 			if (answ.sign_ == num2.sign_) {
 				answ.add_alg(num2);
@@ -42,8 +38,6 @@ namespace brb
 			else {
 				answ.sub_alg(num2);
 			}
-
-			//finishing touch
 			answ.finish();
 			*this = answ;
 			return true;
