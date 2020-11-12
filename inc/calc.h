@@ -4,12 +4,19 @@
 /*
 Todo:
 -operator overload
--fractions downsizing eg 4/6 --> 2/3
 -divide with fractions
 -multiply with fractions
 -add with fractions
 -substract with fractions
 -add test cases
+*/
+/*
+done:
+-fractions downsizing eg 4/6 --> 2/3
+-divide
+-multiply
+-minus
+-plus
 */
 
 #pragma once
