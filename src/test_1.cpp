@@ -5,6 +5,7 @@ static void helper(std::string pos_eka, std::string eka, std::string pos_toka, s
 
 void test_1()
 {
+	//
 	std::ifstream data_in;
 	std::string temp;
 	std::vector<std::string> vs;
