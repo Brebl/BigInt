@@ -27,6 +27,9 @@
     <ClInclude Include="inc\test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inc\brb2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">

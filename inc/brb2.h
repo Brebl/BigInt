@@ -1,25 +1,24 @@
 #pragma once
-#include <string>
-#include <ctime>
-#include <iostream>
-#include <fstream>
-#include <Windows.h>
-#include <climits>
 #undef max
+#ifdef BRB2_EXPORTS
+#define BRB2_API __declspec(dllexport)
+#else
+#define BRB2_API __declspec(dllimport)
+#endif
 
 namespace brb {
-	extern bool sb_err;
-	extern FILE* stream;
+	BRB2_API extern bool sb_err;
+	BRB2_API extern FILE* stream;
 
-	void redirect(const char* filename); //globally redirect clog & cerr to file
-	
-	template<typename T>void input(T& luku) {	//cin number
+	BRB2_API void redirect(const char* filename); //globally redirect clog & cerr to file
+
+	template<typename T> void input(T& luku) {	//cin number
 		while (!(std::wcin >> luku)) {
 			std::wcin.clear();
 			std::wcin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
 	}
-	
+
 	template<typename T> T input() {		//cin number
 		T luku;
 		while (!(std::wcin >> luku)) {
@@ -28,13 +27,13 @@ namespace brb {
 		}
 		return luku;
 	}
-	
-	void ctoc(const std::wstring&);	//copy wstring to clipboard
-	void cls();			//clear console screen
-	void wait();		//wait console until enter key
-	void cleanup();		//delete log-file if no errors and program flow reaches program end
+
+	BRB2_API void ctoc(const std::wstring&);	//copy wstring to clipboard
+	BRB2_API void cls();			//clear console screen
+	BRB2_API void wait();		//wait console until enter key
+	BRB2_API void cleanup();		//delete log-file if no errors and program flow reaches program end
 	using buff = char[32];
-	void timeNow(buff);
+	BRB2_API void timeNow(buff);
 
 	enum class mode {
 		all,
@@ -64,7 +63,7 @@ namespace brb {
 		redirect("log.txt");
 		sb_err = true;	//prevent cleanup
 		buff buffer;
-		timeNow(buffer);	
+		timeNow(buffer);
 		std::cerr << "--ERROR-- " << buffer << t << " : " << u << "\n";
 	}
 }
