@@ -37,19 +37,19 @@ static void helper(std::string pos_eka, std::string eka, std::string pos_toka, s
 	switch (i) {
 	case 0:
 		std::cout << pos_eka << eka << " + " << pos_toka << toka << " = ";
-		a.plus(b);
+		a += b;
 		break;
 	case 1:
 		std::cout << pos_eka << eka << " - " << pos_toka << toka << " = ";
-		a.minus(b);
+		a -= b;
 		break;
 	case 2:
 		std::cout << pos_eka << eka << " * " << pos_toka << toka << " = ";
-		a.times(b);
+		a *= b;
 		break;
 	case 3:
 		std::cout << pos_eka << eka << " / " << pos_toka << toka << " = ";
-		a.divide(b);
+		a /= b;
 		break;
 	default:
 		assert(false);

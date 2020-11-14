@@ -14,7 +14,7 @@ Todo:
 
 namespace brb
 {
-	bool Calc::times(Calc num2)
+	bool Calc::operator *=(Calc num2)
 	{
 		try
 		{

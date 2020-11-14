@@ -11,7 +11,7 @@ todo:
 
 namespace brb
 {
-	bool Calc::divide(Calc num2)
+	bool Calc::operator /=(Calc num2)
 	{
 		try
 		{

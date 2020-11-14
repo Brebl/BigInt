@@ -70,10 +70,10 @@ namespace brb
 		~Calc();
 		void setValue(std::string_view, std::string_view = "", std::string_view = "0", std::string_view = "0");
 		void getValue(int = 0, bool = false);
-		bool plus(Calc);
-		bool minus(Calc);
-		bool times(Calc);
-		bool divide(Calc);
+		bool operator +=(Calc);
+		bool operator -=(Calc);
+		bool operator *=(Calc);
+		bool operator /=(Calc);
 	};
 
 	extern const Calc One;

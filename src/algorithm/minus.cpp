@@ -14,7 +14,7 @@ Todo:
 
 namespace brb
 {
-	bool Calc::minus(Calc num2)
+	bool Calc::operator -=(Calc num2)
 	{
 		try
 		{

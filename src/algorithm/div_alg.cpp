@@ -27,15 +27,15 @@ namespace brb
 		//calculate whole
 		this->num_ = One.num_;
 		while (num1.bs(num2) == Size::Bigger) {
-			this->plus(One);
-			num2.plus(c_div);
+			*this += One;
+			num2 += c_div;
 		}
 
 		//calculate part
 		if (num1.bs(num2) == Size::Smaller) {
-			this->minus(One);
-			num2.minus(c_div);
-			num1.minus(num2);
+			*this -= One;
+			num2 -= c_div;
+			num1 -= num2;
 			remainder_ = num1.num_;		//becomes zero if division goes equal
 			divisor_ = c_div.num_;
 		}

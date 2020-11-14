@@ -45,14 +45,14 @@ namespace brb
 				//calculate whole
 				rem.num_ = One.num_;
 				while (num1.bs(num2) == Size::Bigger) {
-					rem.plus(One);
-					num2.plus(c_div);
+					rem += One;
+					num2 += c_div;
 				}
 				//calculate part
 				if (num1.bs(num2) == Size::Smaller) {
-					rem.minus(One);
-					num2.minus(c_div);
-					num1.minus(num2);
+					rem -= One;
+					num2 -= c_div;
+					num1 -= num2;
 					rem.remainder_ = num1.num_;		//becomes zero if division goes equal
 				}
 			}
@@ -64,14 +64,14 @@ namespace brb
 				//calculate whole
 				div.num_ = One.num_;
 				while (num1.bs(num2) == Size::Bigger) {
-					div.plus(One);
-					num2.plus(c_div);
+					div += One;
+					num2 += c_div;
 				}
 				//calculate part
 				if (num1.bs(num2) == Size::Smaller) {
-					div.minus(One);
-					num2.minus(c_div);
-					num1.minus(num2);
+					div -= One;
+					num2 -= c_div;
+					num1 -= num2;
 					div.remainder_ = num1.num_;
 				}
 			}
@@ -81,12 +81,12 @@ namespace brb
 				remainder = rem;
 				divisor = div;
 				cntr = Calc("2");
-				brb::log("downsize succsess", "");
+				brb::log("downsize succsess", "", mode::debug_only);
 			}
 			else {
 				rem = remainder;
 				div = divisor;
-				cntr.plus(One);
+				cntr += One;
 			}
 		} while (cntr.bs(remainder) == Size::Smaller);
 
