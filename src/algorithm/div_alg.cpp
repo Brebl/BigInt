@@ -38,9 +38,11 @@ namespace brb
 			num1 -= num2;
 			remainder_ = num1.num_;		//becomes zero if division goes equal
 			divisor_ = c_div.num_;
+			if (remainder_ != Zero.num_) {
+						downsize(*this);
+			}
 		}
 		
-		downsize(*this);
 		this->final_sign_ = fi_sign;
 	}
 }

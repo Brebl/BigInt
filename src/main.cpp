@@ -3,5 +3,5 @@
 
 int main()
 {
-	test_1();
+	test2();
 }

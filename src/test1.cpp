@@ -3,7 +3,7 @@
 
 static void helper(std::string pos_eka, std::string eka, std::string pos_toka, std::string toka, int i);
 
-void test_1()
+void test1()
 {
 	//
 	std::ifstream data_in;

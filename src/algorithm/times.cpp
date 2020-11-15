@@ -14,7 +14,7 @@ Todo:
 
 namespace brb
 {
-	bool Calc::operator *=(Calc num2)
+	Calc Calc::operator *=(Calc num2)		//this *= num2
 	{
 		try
 		{
@@ -22,13 +22,21 @@ namespace brb
 			answ.init(num2, Calculation::Mul);
 			answ.mul_alg(num2);
 			answ.finish();
-			*this = answ;
-			return true;
+			answ.errors_ = false;
+			return *this = answ;
 		}
 		catch (const std::exception& e)
 		{
 			brb::err("Multiplication failure: ", e.what());
-			return false;
+			errors_ = true;
+			return *this;
 		}
+	}
+
+	Calc Calc::operator *(const Calc& num2) const		// answ = this * num2
+	{
+		Calc answ = *this;
+		answ *= num2;
+		return answ;
 	}
 }

@@ -1,10 +1,9 @@
 //-------------------------------------------------------------------------------------------------
 // function:	user interface function for addition
-// return:		true(succeess), false(failure)
 //-------------------------------------------------------------------------------------------------
 /*
 Updates:
--top-level exception handling
+-operator overload
 -remove VIRHE(i) macro
 -switch to english
 -Kymppien siirto seuraavaan soluun:
@@ -24,7 +23,7 @@ Todo:
 
 namespace brb
 {
-	bool Calc::operator +=(Calc num2)
+	Calc Calc::operator +=(Calc num2)	//this += num2
 	{
 		try
 		{
@@ -39,12 +38,33 @@ namespace brb
 				answ.sub_alg(num2);
 			}
 			answ.finish();
-			*this = answ;
-			return true;
+			answ.errors_ = false;
+			return *this = answ;
 		}
 		catch (const std::exception& e) {
 			brb::err("Addition failure: ", e.what());
-			return false;
+			errors_ = true;
+			return *this;
 		}
+	}
+
+	Calc Calc::operator +(const Calc& num2) const		// answ = this + num2
+	{
+		Calc answ = *this;
+		answ += num2;
+		return answ;
+	}
+
+	Calc& Calc::operator ++()	//Preincrement
+	{
+		*this += One;
+		return *this;
+	}
+
+	Calc Calc::operator ++(int)	//postincrement
+	{
+		Calc temp = *this;
+		++* this;
+		return temp;
 	}
 }

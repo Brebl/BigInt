@@ -3,7 +3,6 @@
 //*************************************************************************************************
 /*
 Todo:
--operator overload
 -divide with fractions
 -multiply with fractions
 -add with fractions
@@ -12,6 +11,8 @@ Todo:
 */
 /*
 done:
+-more operators
+-operator overload
 -fractions downsizing eg 4/6 --> 2/3
 -divide
 -multiply
@@ -49,6 +50,7 @@ namespace brb
 		Sign	final_sign_;	// sign after calculations
 		Vector	remainder_;		// fractions
 		Vector	divisor_;		// fractions
+		bool errors_;
 
 		//setup
 		void		init(const Calc&, const Calculation);
@@ -70,14 +72,29 @@ namespace brb
 		~Calc();
 		void setValue(std::string_view, std::string_view = "", std::string_view = "0", std::string_view = "0");
 		void getValue(int = 0, bool = false);
-		bool operator +=(Calc);
-		bool operator -=(Calc);
-		bool operator *=(Calc);
-		bool operator /=(Calc);
+		operator bool() const;
+		bool operator !=(Calc) const;
+		bool operator ==(Calc) const;
+		
+		Calc operator +=(Calc);				// A += B
+		Calc operator +(const Calc&) const;	// A = B + C
+		Calc& operator ++();				// ++A
+		Calc operator ++(int);				// A++
+
+		Calc operator -=(Calc);				// A -= B
+		Calc operator -(const Calc&) const;	// A = B - C
+		Calc& operator --();				// --A
+		Calc operator --(int);				// A--
+
+		Calc operator *=(Calc);				// A *= B
+		Calc operator *(const Calc&) const;	// A = B * C
+
+		Calc operator /=(Calc);				// A /= B
+		Calc operator /(const Calc&) const;	// A = B / C
 	};
 
-	extern const Calc One;
 	extern const Calc Zero;
+	extern const Calc One;
 	extern const Calc Pi;
 }
 

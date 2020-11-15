@@ -6,7 +6,8 @@ namespace brb
 	const Calc One = Calc("1");
 	const Calc Pi = Calc("3","","16","113");
 
-	Calc::Calc(std::string_view number, std::string_view s, std::string_view r, std::string_view d)
+	Calc::Calc(std::string_view number, std::string_view s, std::string_view r, std::string_view d) :
+		errors_(false)
 	{
 		setValue(number, s, r, d);
 	}

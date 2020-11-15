@@ -59,9 +59,6 @@
     <ClCompile Include="src\algorithm\sub_alg.cpp">
       <Filter>Source Files\calc</Filter>
     </ClCompile>
-    <ClCompile Include="src\algorithm\plus.cpp">
-      <Filter>Source Files\calc</Filter>
-    </ClCompile>
     <ClCompile Include="src\algorithm\minus.cpp">
       <Filter>Source Files\calc</Filter>
     </ClCompile>
@@ -89,10 +86,19 @@
     <ClCompile Include="src\algorithm\div_alg.cpp">
       <Filter>Source Files\calc</Filter>
     </ClCompile>
-    <ClCompile Include="src\test_1.cpp">
+    <ClCompile Include="src\algorithm\downsize.cpp">
+      <Filter>Source Files\calc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\algorithm\downsize.cpp">
+    <ClCompile Include="src\test1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\algorithm\plus.cpp">
+      <Filter>Source Files\calc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\algorithm\boolean.cpp">
       <Filter>Source Files\calc</Filter>
     </ClCompile>
   </ItemGroup>
