@@ -62,6 +62,7 @@
     <ProjectGuid>{6f81768c-abc8-4865-8fd1-f8adbb62fca4}</ProjectGuid>
     <RootNamespace>Laskukone</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>BigInt</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
