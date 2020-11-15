@@ -101,5 +101,8 @@
     <ClCompile Include="src\algorithm\boolean.cpp">
       <Filter>Source Files\calc</Filter>
     </ClCompile>
+    <ClCompile Include="src\algorithm\equal.cpp">
+      <Filter>Source Files\calc</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

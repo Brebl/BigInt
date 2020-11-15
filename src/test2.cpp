@@ -4,13 +4,14 @@ void test2()
 {
 	brb::Calc a{ "5" };
 	brb::Calc b{ "5" };
-	brb::Calc c{ "7" };
-	//a = b + c;
+
+	a++;
+	++b;
 	
-	if (a != b) {
-		std::cout << "different";
+	if (a == b) {
+		std::cout << "same";
 	}
 	else {
-		std::cout << "same";
+		std::cout << "diff";
 	}
 }
