@@ -57,6 +57,10 @@
     <ClCompile Include="src\test2.cpp" />
     <ClCompile Include="src\test1.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="dll\x64\Brb2.dll" />
+    <None Include="dll\x86\Brb2.dll" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{6f81768c-abc8-4865-8fd1-f8adbb62fca4}</ProjectGuid>

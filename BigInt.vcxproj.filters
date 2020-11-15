@@ -102,4 +102,12 @@
       <Filter>Source Files\calc</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="dll\x64\Brb2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="dll\x86\Brb2.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
