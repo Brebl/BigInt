@@ -4,4 +4,5 @@
 int main()
 {
 	test1();
+	brb::wait();
 }
