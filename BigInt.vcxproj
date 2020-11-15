@@ -57,10 +57,6 @@
     <ClCompile Include="src\test2.cpp" />
     <ClCompile Include="src\test1.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="dll\x64\Brb2.dll" />
-    <None Include="dll\x86\Brb2.dll" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{6f81768c-abc8-4865-8fd1-f8adbb62fca4}</ProjectGuid>
@@ -126,8 +122,8 @@
     <IntDir>obj\windows\$(platformshortname)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Dropbox\Koodaus\Library\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Dropbox\Koodaus\Library\Lib\Brb\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
     <OutDir>bin\windows\$(platformshortname)\$(Configuration)\</OutDir>
     <IntDir>obj\windows\$(platformshortname)\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -151,7 +147,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>Brb2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Brb2_x86.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)\lib\windows\$(platformshortname)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -170,8 +166,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>Brb2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>lib\windows\x64\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Brb2_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\lib\windows\</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -192,7 +188,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Brb2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Brb2_x86.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)\lib\windows\$(platformshortname)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -214,8 +210,8 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>lib\windows\x64\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>brb2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\lib\windows\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Brb2_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

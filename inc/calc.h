@@ -73,8 +73,8 @@ namespace brb
 		void setValue(std::string_view, std::string_view = "", std::string_view = "0", std::string_view = "0");
 		void getValue(int = 0, bool = false);
 		operator bool() const;
-		bool operator !=(Calc) const;
-		bool operator ==(Calc) const;
+	//	bool operator !=(Calc) const;
+	//	bool operator ==(Calc) const;
 		
 		Calc operator +=(Calc);				// A += B
 		Calc operator +(const Calc&) const;	// A = B + C

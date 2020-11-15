@@ -8,10 +8,10 @@ namespace brb
 {
 	void Calc::finish()
 	{
-		//set sign
 		sign_ = final_sign_;
-
-		//final check
+		if (remainder_ == Zero.num_) {
+			divisor_ = Zero.num_;
+		}
 		validate(*this);
 	}
 }
