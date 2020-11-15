@@ -2,6 +2,8 @@
 BigInt class for basic calculations
 
 Supports following:
+windows x64, x86
+
 addition
 substraction
 multiplication
