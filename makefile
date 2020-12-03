@@ -20,8 +20,8 @@ PROG_NAME 		= BigInt
 DEBUGFLAGS 		= -g -Wall $(DEFS) $(INC)
 RELEASEFLAGS	= -O $(DEFS) $(INC) 
 DEFS			= -std=c++17 -march=x86-64
-INC				= -iquote $(incdir)
-LDFLAGS			= -L$(3libdir) -lbrb2_x64 -Wl,-rpath=$(libdir)
+INC				= -iquote $(incdir) -I /usr/local/include
+LDFLAGS			= -lbrb2 #-Wl,-rpath=$(libdir)
 
 prefix 			= /usr/local/
 bindir 			= $(prefix)bin/
@@ -76,6 +76,9 @@ vpath %.o 		$(objdir)
 
 all: $(GCH) debug postbuild
 install: $(GCH) release rpostbuild
+
+prebuild:
+	#copy 3lib -> lib
 
 # GNU specific precompiled header:
 $(GCH): $(PCH)

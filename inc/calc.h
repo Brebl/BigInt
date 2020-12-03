@@ -21,7 +21,8 @@ done:
 */
 
 #pragma once
-#include "brb2.h"
+#include <brb2/brb2.h>
+#include "pch.h"
 
 namespace brb
 {
