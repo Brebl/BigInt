@@ -10,43 +10,42 @@
 SHELL = /bin/sh
 
 .SUFFIXES:
-.SUFFIXES: .cpp .o .h
+.SUFFIXES: .cpp .o .h .dep
 
 CXX 			:= g++
 LD				:= ld
+INSTALL			:= install
+INSTALLDATA		:= install -m 644
 OS				:= linux
-ARCH			:= x64
-PROG_NAME 		= BigInt
-DEBUGFLAGS 		= -g -Wall $(DEFS) $(INC)
-RELEASEFLAGS	= -O $(DEFS) $(INC) 
+
+CFLAGS	 		= -g -Wall $(DEFS) $(INC)
 DEFS			= -std=c++17 -march=x86-64
-INC				= -iquote $(incdir) -I /usr/local/include
+INC				= -iquote $(incdir)
 LDFLAGS			= -lbrb2 #-Wl,-rpath=$(libdir)
 
 prefix 			= /usr/local/
 bindir 			= $(prefix)bin/
 libdir			= $(prefix)lib/
-infodir 		= $(prefix)info/
+includedir 		= $(prefix)include/
 
 ################################
 # Project files
 ################################
-debugdir 		= ./bin/$(OS)/$(ARCH)/
+PROG_NAME 		= BigInt
+
+builddir 		= ./bin/$(OS)/
 incdir			= ./inc/
-src_basedir		= ./src
-srcdirs			= $(addsuffix /,$(shell find $(src_basedir) -type d))
+src_basedir		= ./src/
+srcdirs			= $(addsuffix /,$(shell find $(patsubst %/,%,$(src_basedir)) -type d))
 resdir			= ./res/
 3libdir			= ./lib/$(OS)/
-depdir			= ./dep/$(OS)/$(ARCH)/
-d_objdir		= ./obj/$(OS)/$(ARCH)/debug/
-r_objdir		= ./obj/$(OS)/$(ARCH)/release/
+depdir			= ./dep/$(OS)/
+objdir			= ./obj/$(OS)/
 
-d_dirs			= $(debugdir) $(d_objdir)
-r_dirs			= $(r_objdir) $(libdir)
-all_dirs		= $(debugdir) $(incdir) $(src_basedir) $(resdir) \
-					$(3libdir) $(depdir) $(d_objdir) $(r_objdir)
+dirs			= $(builddir) $(incdir) $(src_basedir) $(resdir) \
+				$(3libdir) $(depdir) $(objdir)
 
-SRCS	:= $(notdir $(foreach dir, $(srcdirs),$(wildcard $(dir)*.cpp)))
+SRCS	:= $(patsubst ./%,%,$(foreach dir, $(srcdirs),$(wildcard $(dir)*.cpp)))
 
 RESS	:= $(wildcard $(resdir)*)
 
@@ -54,91 +53,94 @@ LIBS	:= \
 
 PCH		:= $(incdir)pch.h
 
+SUBS	:= ./Brb2/
+
 ################################
 # Targets
 ################################
 
-DEBUG_OBJS 		:= $(addprefix $(d_objdir),$(SRCS:.cpp=.o))
-RELEASE_OBJS	:= $(addprefix $(r_objdir),$(SRCS:.cpp=.o))
+OBJS 			:= $(addprefix $(objdir),$(SRCS:.cpp=.o))
 DEPENDENCY 		:= $(addprefix $(depdir),$(SRCS:.cpp=.dep))
 GCH				:= $(PCH).gch
+PREBUILD		:= $(objdir).lastprebuild
+BUILD			:= $(objdir).lastbuild
 
 vpath %.h		$(incdir)
 vpath %.cpp		$(srcdirs)
 vpath %.dep		$(depdir)
 vpath %.o 		$(objdir)
 
-.PHONY: all install debug release installdirs clean postbuild rpostbuild
+.PHONY: all build install clean realclean rebuild installdirs prebuild
 
 ################################
 # Make
 ################################
 
-all: $(GCH) debug postbuild
-install: $(GCH) release rpostbuild
+all: $(PREBUILD) $(GCH) build
 
-prebuild:
-	#copy 3lib -> lib
+$(PREBUILD): $(SUBS)
+#submodules
+	sudo $(MAKE) install -C Brb2
+	@touch $@
 
-# GNU specific precompiled header:
+# GNU specific precompiled header: 
 $(GCH): $(PCH)
+	@echo
 	@echo [PRECOMPILED HEADER]
-	$(CXX) -c $(DEBUGFLAGS) $<
-#	$(CXX) -c $(RELEASEFLAGS) $<
+	$(CXX) -c $(CFLAGS) $<
 
-debug: $(DEBUG_OBJS) 
-	@echo [LINK] 
-	$(CXX) $(LDFLAGS) $^ -o $(debugdir)$(PROG_NAME)
+build: $(BUILD)
+	@echo
+	@echo [PROJECT UP-TO-DATE]
 
-$(d_objdir)%.o : %.cpp %.dep | $(d_dirs)
+$(BUILD): $(OBJS)
+	@echo
+	@echo [LINK]
+	$(CXX) $(LDFLAGS) $^ -o $(builddir)$(REALNAME)
+	@touch $@
+
+$(objdir)%.o : %.cpp %.dep
 	@echo [COMPILE]
-	$(CXX) -c $(DEBUGFLAGS) \
-	-o $@ $<
-
-release: $(RELEASE_OBJS)
-	@echo [LINK] 
-	$(CXX) $(LDFLAGS) $^ -o $(bindir)$(PROG_NAME)
-
-$(r_objdir)%.o : %.cpp %.dep | $(r_dirs)
-	@echo [COMPILE]
-	$(CXX) -c $(RELEASEFLAGS) \
+	$(CXX) -c $(CFLAGS) \
 	-o $@ $<
 
 # Dependency generation:
 # dep/main.dep: src/main.cpp inc/header.h
-$(depdir)%.dep : %.cpp | $(depdir)
+$(depdir)%.dep : %.cpp | $(dirs)
 	@echo [DEPENDENCY]
-	$(CXX) -c $(DEBUGFLAGS) \
+	$(CXX) -c $(CFLAGS) \
 	-MM -MP -MT $@ $< \
 	> $@
 
 -include $(DEPENDENCY)
 
-# Directories
-$(depdir):
-	@echo [MKDIR depdir]
-	mkdir -p $(depdir)
-
-$(d_dirs):
-	@echo [MKDIR d_dirs]
-	mkdir -p $(d_dirs)
-
-$(r_dirs):
-	@echo [MKDIR r_dirs]
-	mkdir -p $(r_dirs)
-
-installdirs: 
-	@echo [INSTALLDIRS]
-	mkdir -p $(all_dirs)
-
-# postbuilds
-# todo: copy res, lib -> targetdir
-postbuild:
-	#cp $(RESS)
-
-rpostbuild:
+install: all
 
 clean:
-	rm -f $(bindir)$(PROG_NAME)
-	rm -f $(debugdir)* $(d_objdir)* $(r_objdir)* $(depdir)*
-	rm -f $(incdir)pch.h.gch
+	@echo [CLEAN]
+ifdef builddir
+	rm -f $(builddir)*
+endif
+	rm -f $(OBJS) $(DEPENDENCY) $(GCH) $(BUILD)
+
+realclean: clean
+	
+
+rebuild: clean
+	@echo
+	@echo [REBUILD]
+	$(MAKE)
+
+# Directory structure
+$(dirs):
+	@echo
+	@echo [MKDIR dirs]
+	mkdir -p $(dirs)
+	mkdir -p $(foreach dir,$(patsubst ./%,%,$(srcdirs)),$(objdir)$(dir))
+	mkdir -p $(foreach dir,$(patsubst ./%,%,$(srcdirs)),$(depdir)$(dir))
+
+installdirs:
+	@echo [INSTALLDIRS]
+	mkdir -p $(dirs)
+	mkdir -p $(foreach dir,$(patsubst ./%,%,$(srcdirs)),$(objdir)$(dir))
+	mkdir -p $(foreach dir,$(patsubst ./%,%,$(srcdirs)),$(depdir)$(dir))
