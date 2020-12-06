@@ -2,7 +2,7 @@
 //function:		Set internal values num_, sign_, remainder_, divisor_
 //-------------------------------------------------------------------------------------------------
 
-#include "calc.h"
+#include "pch.h"
 
 static short helper(const char*);
 

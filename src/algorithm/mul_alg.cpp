@@ -4,15 +4,15 @@
 
 /*Kerto-algoritmi
 Valmis
-Päivitykset:
--Kymppien siirrossa while muutettu muotoon if, koska ei pitäisi tapahtua toiseen kertaan. if (luku_[ind] > 9) {
--Kymppiä isommat siirretään aina for(num2) jälkeen ettei tule ylivuotoa, testattu 9*10e6000 ^2
+Pï¿½ivitykset:
+-Kymppien siirrossa while muutettu muotoon if, koska ei pitï¿½isi tapahtua toiseen kertaan. if (luku_[ind] > 9) {
+-Kymppiï¿½ isommat siirretï¿½ï¿½n aina for(num2) jï¿½lkeen ettei tule ylivuotoa, testattu 9*10e6000 ^2
 
 Todo:
 
 */
 
-#include "calc.h"
+#include "pch.h"
 
 namespace brb
 {

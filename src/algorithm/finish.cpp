@@ -2,7 +2,7 @@
 //function:		finish the calculation
 //-------------------------------------------------------------------------------------------------
 
-#include "calc.h"
+#include "pch.h"
 
 namespace brb
 {

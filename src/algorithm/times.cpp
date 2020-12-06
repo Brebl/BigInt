@@ -2,14 +2,14 @@
 // function:	user interface function for multiplication
 //-------------------------------------------------------------------------------------------------
 /*
-Päivitykset:
+Pï¿½ivitykset:
 
 Todo:
 -Murtolukujen huomioiminen
 
 */
 
-#include "calc.h"
+#include "pch.h"
 
 namespace brb
 {

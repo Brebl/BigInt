@@ -1,4 +1,4 @@
-#include "calc.h"
+#include "pch.h"
 #include <fstream>
 
 static void helper(std::string pos_eka, std::string eka, std::string pos_toka, std::string toka, int i);

@@ -2,7 +2,7 @@
 //function:		Digit is transferred from one column of digits to another column of more significant digits
 //-------------------------------------------------------------------------------------------------
 
-#include "calc.h"
+#include "pch.h"
 
 namespace brb
 {

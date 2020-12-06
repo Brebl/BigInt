@@ -9,17 +9,17 @@ Updates:
 -Kymppien siirto seuraavaan soluun:
 	while (vastaus[ind] > 9) {... muutettu muotoon
 	if (vastaus[ind] > 9) {
-	Tehostettu toimintaa koska vastaus[ind] ei pitäisi olla toista kertaa >9
+	Tehostettu toimintaa koska vastaus[ind] ei pitï¿½isi olla toista kertaa >9
 -Poistettu Vektori vastaus
 	koska luku_ ajaa saman asian
--Lisätty VIRHE(i) makro
+-Lisï¿½tty VIRHE(i) makro
 -Huomio negatiivisuuden
 
 Todo:
 -Murtolukujen huomioiminen
 */
 
-#include "calc.h"
+#include "pch.h"
 
 namespace brb
 {
