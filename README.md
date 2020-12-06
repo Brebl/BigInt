@@ -2,6 +2,7 @@
 BigInt class for basic calculations  
   
 Supports following:  
+linux  
 windows x64, x86  
   
 addition  
@@ -18,5 +19,9 @@ boolean, !=, ==
 /, /=  
   
 # Compile  
-Just build BigInt.vcxproj (using VisualStudio) and you should be good to go.  
+`git clone https://github.com/Brebl/BigInt.git`  
+`git submodule update --init`  
+`make`  
   
+or,    
+build BigInt.vcxproj (using VisualStudio) and you`re good to go.  
