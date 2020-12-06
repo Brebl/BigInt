@@ -27,6 +27,7 @@ void test1()
 
 	std::cout << "\n\n"
 	"--------------------------------------------------TEST_1 END-----------------------------------------------\n\n\n";
+	brb::wait();
 }
 
 static void helper(std::string pos_eka, std::string eka, std::string pos_toka, std::string toka, int i)

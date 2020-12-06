@@ -81,7 +81,7 @@ namespace brb
 				remainder = rem;
 				divisor = div;
 				cntr = Calc("2");
-				brb::log("downsize succsess", "", mode::debug_only);
+				brb::log("downsize succsess", "", Mode::debug_only);
 			}
 			else {
 				rem = remainder;

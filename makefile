@@ -53,7 +53,7 @@ LIBS	:= \
 
 PCH		:= $(incdir)pch.h
 
-SUBS	:= ./Brb2/
+SUBMODULES	:= ./Brb2/
 
 ################################
 # Targets
@@ -64,45 +64,47 @@ DEPENDENCY 		:= $(addprefix $(depdir),$(SRCS:.cpp=.dep))
 GCH				:= $(PCH).gch
 PREBUILD		:= $(objdir).lastprebuild
 BUILD			:= $(objdir).lastbuild
+POSTBUILD		:= $(objdir).lastpostbuild
 
 vpath %.h		$(incdir)
 vpath %.cpp		$(srcdirs)
 vpath %.dep		$(depdir)
 vpath %.o 		$(objdir)
 
-.PHONY: all build install clean realclean rebuild installdirs prebuild
+.PHONY: all build install clean realclean rebuild installdirs
 
 ################################
 # Make
 ################################
 
-all: $(PREBUILD) $(GCH) build
+all: $(PREBUILD) $(GCH) build $(POSTBUILD)
 
-$(PREBUILD): $(SUBS)
+$(PREBUILD): $(SUBMODULES)
 #submodules
-	sudo $(MAKE) install -C Brb2
+	sudo $(MAKE) $(INSTALL) Brb2
 	@touch $@
 
 # GNU specific precompiled header: 
 $(GCH): $(PCH)
-	@echo
 	@echo [PRECOMPILED HEADER]
 	$(CXX) -c $(CFLAGS) $<
+	@echo
 
 build: $(BUILD)
-	@echo
 	@echo [PROJECT UP-TO-DATE]
+	@echo
 
 $(BUILD): $(OBJS)
-	@echo
 	@echo [LINK]
-	$(CXX) $(LDFLAGS) $^ -o $(builddir)$(REALNAME)
+	$(CXX) $(LDFLAGS) $^ -o $(builddir)$(PROG_NAME)
 	@touch $@
+	@echo
 
 $(objdir)%.o : %.cpp %.dep
 	@echo [COMPILE]
 	$(CXX) -c $(CFLAGS) \
 	-o $@ $<
+	@echo
 
 # Dependency generation:
 # dep/main.dep: src/main.cpp inc/header.h
@@ -111,8 +113,15 @@ $(depdir)%.dep : %.cpp | $(dirs)
 	$(CXX) -c $(CFLAGS) \
 	-MM -MP -MT $@ $< \
 	> $@
+	@echo
 
 -include $(DEPENDENCY)
+
+$(POSTBUILD): $(BUILD)
+	@echo [POSTBUILD]
+	cp $(RESS) $(builddir)
+	@touch $@
+	@echo
 
 install: all
 
@@ -121,26 +130,28 @@ clean:
 ifdef builddir
 	rm -f $(builddir)*
 endif
-	rm -f $(OBJS) $(DEPENDENCY) $(GCH) $(BUILD)
+	rm -f $(OBJS) $(DEPENDENCY) $(GCH) $(BUILD) $(PREBUILD) $(POSTBUILD)
+	@echo
 
 realclean: clean
 	
 
 rebuild: clean
-	@echo
 	@echo [REBUILD]
 	$(MAKE)
+	@echo
 
 # Directory structure
 $(dirs):
-	@echo
 	@echo [MKDIR dirs]
 	mkdir -p $(dirs)
 	mkdir -p $(foreach dir,$(patsubst ./%,%,$(srcdirs)),$(objdir)$(dir))
 	mkdir -p $(foreach dir,$(patsubst ./%,%,$(srcdirs)),$(depdir)$(dir))
+	@echo
 
 installdirs:
 	@echo [INSTALLDIRS]
 	mkdir -p $(dirs)
 	mkdir -p $(foreach dir,$(patsubst ./%,%,$(srcdirs)),$(objdir)$(dir))
 	mkdir -p $(foreach dir,$(patsubst ./%,%,$(srcdirs)),$(depdir)$(dir))
+	@echo
