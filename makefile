@@ -81,7 +81,7 @@ all: $(PREBUILD) $(GCH) build $(POSTBUILD)
 
 $(PREBUILD): $(SUBMODULES)
 #submodules
-	sudo $(MAKE) $(INSTALL) Brb2
+	sudo $(MAKE) $(INSTALL) -C Brb2
 	@touch $@
 
 # GNU specific precompiled header: 
