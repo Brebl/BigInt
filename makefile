@@ -117,7 +117,7 @@ $(depdir)%.dep : %.cpp | $(dirs)
 
 -include $(DEPENDENCY)
 
-$(POSTBUILD): $(BUILD)
+$(POSTBUILD): $(RESS)
 	@echo [POSTBUILD]
 	cp $(RESS) $(builddir)
 	@touch $@
