@@ -44,17 +44,16 @@ namespace brb
 				}
 			}
 		}
-		std::cout << "\nNumber of digits: " << num_.size() << std::endl;
+		//std::cout << "\nNumber of digits: " << num_.size() << std::endl;
 
-		//remainder
+		//fractions
 		if (remainder_ != Zero.num_) {
-			std::cout << "Remainder: ";
+			std::cout << " ";
 			for (auto&& i : remainder_)
 				std::cout << i;
-			std::cout << "\nDivisor: ";
+			std::cout << "/";
 			for (auto&& i : divisor_)
 				std::cout << i;
 		}
-		std::cout << "\n\n";
 	}
 }

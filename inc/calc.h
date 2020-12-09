@@ -70,6 +70,7 @@ namespace brb
 
 	public:
 		Calc(std::string_view = "0", std::string_view = "", std::string_view = "0", std::string_view = "0");
+		Calc(std::stringstream);
 		~Calc();
 		void setValue(std::string_view, std::string_view = "", std::string_view = "0", std::string_view = "0");
 		void getValue(int = 0, bool = false);

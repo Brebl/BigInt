@@ -1,60 +1,71 @@
 #include "pch.h"
 #include <fstream>
+#include <iomanip>
 
-static void helper(std::string pos_eka, std::string eka, std::string pos_toka, std::string toka, int i);
-
-void test1()
+bool test1()
 {
-	//
+	struct Testcase{
+		std::string calculation;
+		brb::Calc num1, num2;
+		brb::Calc answer;
+	};
 	std::ifstream data_in;
-	std::string temp;
-	std::vector<std::string> vs;
+	Testcase testcase;
+	std::vector<Testcase> vtest;
+	std::string s, n, r, d;
 
+	//load testfile
 	data_in.open("test1.data", std::ios::in);
 	if (data_in) {
 		while (data_in.peek() != EOF) {
-			data_in >> temp;
-			vs.emplace_back(temp);
+			data_in >> testcase.calculation 
+			>> s >> n >> r >> d;
+			testcase.num1 = brb::Calc{n,s,r,d};
+
+			data_in >> s >> n >> r >> d;
+			testcase.num2 = brb::Calc{n,s,r,d};
+
+			data_in >> s >> n >> r >> d;
+			testcase.answer = brb::Calc{n,s,r,d};
+
+			vtest.emplace_back(testcase);
 		}
+	}
+	else{
+		brb::err("test1.data","file not found");
+		return false;
 	}
 	data_in.close();
 
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 8; j++) {
-			helper(vs[0 + (j * 4)], vs[1 + (j * 4)], vs[2 + (j * 4)], vs[3 + (j * 4)], i);
+	//run tests
+	for(auto&& i: vtest){
+		i.num1.getValue();
+		if(i.calculation == "+"){
+			std::cout << " + ";
+			i.num1 += i.num2;
 		}
+		if(i.calculation == "-"){
+			std::cout << " - ";
+			i.num1 -= i.num2;
+		}
+		if(i.calculation == "*"){
+			std::cout << " * ";
+			i.num1 *= i.num2;
+		}
+		if(i.calculation == "/"){
+			std::cout << " / ";
+			i.num1 /= i.num2;
+		}
+		i.num2.getValue();
+		std::cout << "\t= ";
+		i.answer.getValue();
+
+		if(i.answer != i.num1){
+			brb::err("test1 failed", "");
+			return false;
+		}
+		std::cout << std::endl;
 	}
-
-	std::cout << "\n\n"
-	"--------------------------------------------------TEST_1 END-----------------------------------------------\n\n\n";
-	brb::wait();
-}
-
-static void helper(std::string pos_eka, std::string eka, std::string pos_toka, std::string toka, int i)
-{
-	brb::Calc a{ eka, pos_eka };
-	brb::Calc b{ toka, pos_toka };
-
-	switch (i) {
-	case 0:
-		std::cout << pos_eka << eka << " + " << pos_toka << toka << " = ";
-		a += b;
-		break;
-	case 1:
-		std::cout << pos_eka << eka << " - " << pos_toka << toka << " = ";
-		a -= b;
-		break;
-	case 2:
-		std::cout << pos_eka << eka << " * " << pos_toka << toka << " = ";
-		a *= b;
-		break;
-	case 3:
-		std::cout << pos_eka << eka << " / " << pos_toka << toka << " = ";
-		a /= b;
-		break;
-	default:
-		assert(false);
-		break;
-	}
-	a.getValue(0, true);
+	std::cout << "----------------\ntest1 successful\n";
+	return true;
 }
