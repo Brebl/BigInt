@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------------------------------
-// function:	print values to stdout
+// function:	print values to stringstream
 // a:			how many digits before endl
 // sep:			thousands separator, yep/no
 //-------------------------------------------------------------------------------------------------
@@ -9,38 +9,39 @@
 
 namespace brb
 {
-	void Calc::getValue(int a, bool sep)
+	const std::string Calc::getValue(int a, bool sep) const
 	{
+		std::stringstream output;
 		if (sign_ == Sign::Negative) {
-			std::cout << "-";
+			output << "-";
 		}
 
 		//no endls
 		if (a == 0) {
 			size_t th = num_.size() - 1;
-			std::cout << *num_.rbegin();
+			output << *num_.rbegin();
 			for (auto itr = num_.rbegin() + 1; itr != num_.rend(); itr++) {
 				if ((th % 3 == 0) && sep) {
-					std::cout << " ";
+					output << " ";
 				}
 				th--;
-				std::cout << *itr;
+				output << *itr;
 			}
 		}
 		//endls
 		else {
 			size_t th = num_.size() - 1;
 			int temp = a;
-			std::cout << *num_.rbegin();
+			output << *num_.rbegin();
 			for (auto itr = num_.rbegin() + 1; itr != num_.rend(); itr++) {
 				if ((th % 3 == 0) && sep) {
-					std::cout << " ";
+					output << " ";
 				}
 				th--;
-				std::cout << *itr;
+				output << *itr;
 				temp--;
 				if (temp <= 0) {
-					std::cout << std::endl;
+					output << std::endl;
 					temp = a;
 				}				
 			}
@@ -49,14 +50,16 @@ namespace brb
 
 		//fractions
 		if (remainder_ != Zero.num_) {
-			std::cout << " ";
+			output << " ";
 			for (auto itr = remainder_.rbegin(); itr != remainder_.rend(); itr++) {
-				std::cout << *itr;
+				output << *itr;
 			}
-			std::cout << "/";
+			output << "/";
 			for (auto itr = divisor_.rbegin(); itr != divisor_.rend(); itr++) {
-				std::cout << *itr;
+				output << *itr;
 			}
 		}
+		return output.str();
 	}
 }
+
