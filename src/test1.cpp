@@ -39,7 +39,7 @@ bool test1()
 
 	//run tests
 	for(auto&& i: vtest){
-		i.num1.getValue();
+		std::cout << i.num1.getValue();
 		if(i.calculation == "+"){
 			std::cout << " + ";
 			i.num1 += i.num2;
@@ -56,12 +56,12 @@ bool test1()
 			std::cout << " / ";
 			i.num1 /= i.num2;
 		}
-		i.num2.getValue();
+		std::cout << i.num2.getValue();
 		std::cout << "\t= ";
-		i.answer.getValue();
+		std::cout << i.answer.getValue();
 
 		if(i.answer != i.num1){
-			brb::err("test1 failed", "");
+			brb::err("test1 failed", i.num1.getValue());
 			return false;
 		}
 		std::cout << std::endl;
