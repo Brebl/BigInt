@@ -24,7 +24,7 @@ namespace brb
 					std::cout << " ";
 				}
 				th--;
-				std::cout << num_[*itr];
+				std::cout << *itr;
 			}
 		}
 		//endls
@@ -37,7 +37,7 @@ namespace brb
 					std::cout << " ";
 				}
 				th--;
-				std::cout << num_[*itr];
+				std::cout << *itr;
 				temp--;
 				if (temp <= 0) {
 					std::cout << std::endl;
