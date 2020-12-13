@@ -75,7 +75,7 @@ namespace brb
 		Calc(std::stringstream);
 		~Calc();
 		void setValue(std::string_view, std::string_view = "", std::string_view = "0", std::string_view = "0");
-		void getValue(int = 0, bool = false);
+		const std::string getValue(int = 0, bool = false) const;
 		operator bool() const;				// check that calculation had no errors
 		bool operator !=(const Calc&) const;
 		bool operator ==(const Calc&) const;
