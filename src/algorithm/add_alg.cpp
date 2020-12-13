@@ -8,10 +8,6 @@ namespace brb
 {
 	void Calc::add_alg(Calc& n2)
 	{
-		//numbers backwards because emplace_back
-		std::reverse(num_.begin(), num_.end());
-		std::reverse(n2.num_.begin(), n2.num_.end());
-
 		//check capacity
 		if (bs(n2) == Size::Smaller) {
 			num_.reserve(n2.num_.size() + 1);
@@ -47,7 +43,5 @@ namespace brb
 					num_[i + 1] += temp;
 			}
 		}
-
-		std::reverse(num_.begin(), num_.end());
 	}
 }

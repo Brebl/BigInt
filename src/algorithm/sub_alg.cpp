@@ -16,9 +16,6 @@ namespace brb
 				num2.num_ = org.num_;
 			}
 		}
-		//number backwards because emplace_back
-		std::reverse(num_.begin(), num_.end());
-		std::reverse(num2.num_.begin(), num2.num_.end());
 
 		//substraction
 		for (size_t i = 0; i < num2.num_.size(); i++) {
@@ -37,6 +34,5 @@ namespace brb
 		if (num_.empty())
 			num_.emplace_back(0);
 
-		std::reverse(num_.begin(), num_.end());
 	}
 }

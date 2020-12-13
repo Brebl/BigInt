@@ -20,11 +20,7 @@ namespace brb
 	{
 		//capacity
 		Vector answ;
-		answ.reserve(num_.size() + num2.num_.size());
-
-		//numbers backwards because emplace_back
-		std::reverse(num_.begin(), num_.end());
-		std::reverse(num2.num_.begin(), num2.num_.end());		
+		answ.reserve(num_.size() + num2.num_.size());		
 
 		//multiplication
 		size_t ind = 0;
@@ -48,7 +44,6 @@ namespace brb
 			carry(answ);	//prevent overflow with large numbers
 		}
 	
-		std::reverse(answ.begin(), answ.end());
 		this->num_ = answ;
 	}
 }

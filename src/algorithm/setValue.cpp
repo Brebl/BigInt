@@ -4,7 +4,7 @@
 
 #include "pch.h"
 
-static short helper(const char*);
+static short helper(const char);
 
 namespace brb
 {
@@ -20,23 +20,23 @@ namespace brb
 		divisor_.clear();
 		remainder_.clear();
 
-		for (size_t i = 0; i < number.size(); i++) {
-			num_.emplace_back(helper(&number[i]));
+		for (auto itr = number.rbegin(); itr != number.rend(); itr++) {
+			num_.emplace_back(helper(*itr));
 		}
 
-		for (size_t i = 0; i < remainder.size(); i++) {
-			remainder_.emplace_back(helper(&remainder[i]));
+		for (auto itr = remainder.rbegin(); itr != remainder.rend(); itr++) {
+			remainder_.emplace_back(helper(*itr));
 		}
 
-		for (size_t i = 0; i < divisor.size(); i++) {
-			divisor_.emplace_back(helper(&divisor[i]));
+		for (auto itr = divisor.rbegin(); itr != divisor.rend(); itr++) {
+			divisor_.emplace_back(helper(*itr));
 		}
 	}
 }
 
-static short helper(const char* c)
+static short helper(const char c)
 {
-	switch (*c) {
+	switch (c) {
 	case '0':
 		return (short)0;
 	case '1':
@@ -58,7 +58,7 @@ static short helper(const char* c)
 	case '9':
 		return (short)9;
 	default:
-		std::cerr << "non-numeric value inputted: " << *c;
+		std::cerr << "non-numeric value inputted: " << c;
 		return (short)-1;
 	}
 }

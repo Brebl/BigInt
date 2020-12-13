@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------------------------
 // function:	print values to stdout
-// a:			how many numbers before endl
+// a:			how many digits before endl
 // sep:			thousands separator, yep/no
 //-------------------------------------------------------------------------------------------------
 
@@ -15,33 +15,34 @@ namespace brb
 			std::cout << "-";
 		}
 
-		size_t th;
 		//no endls
 		if (a == 0) {
-			for (size_t i = 0; i < num_.size(); i++) {
-				th = num_.size() - i;
-				if (!(th %= 3) && sep) {
-					if (i != 0)
-						std::cout << " ";
+			size_t th = num_.size() - 1;
+			std::cout << *num_.rbegin();
+			for (auto itr = num_.rbegin() + 1; itr != num_.rend(); itr++) {
+				if ((th % 3 == 0) && sep) {
+					std::cout << " ";
 				}
-				std::cout << num_[i];
+				th--;
+				std::cout << num_[*itr];
 			}
 		}
 		//endls
 		else {
+			size_t th = num_.size() - 1;
 			int temp = a;
-			for (size_t i = 0; i < num_.size(); i++) {
-				th = num_.size() - i;
-				if (!(th %= 3) && sep) {
-					if (i != 0)
-						std::cout << " ";
+			std::cout << *num_.rbegin();
+			for (auto itr = num_.rbegin() + 1; itr != num_.rend(); itr++) {
+				if ((th % 3 == 0) && sep) {
+					std::cout << " ";
 				}
-				std::cout << num_[i];
+				th--;
+				std::cout << num_[*itr];
 				temp--;
 				if (temp <= 0) {
 					std::cout << std::endl;
 					temp = a;
-				}
+				}				
 			}
 		}
 		//std::cout << "\nNumber of digits: " << num_.size() << std::endl;
@@ -49,11 +50,13 @@ namespace brb
 		//fractions
 		if (remainder_ != Zero.num_) {
 			std::cout << " ";
-			for (auto&& i : remainder_)
-				std::cout << i;
+			for (auto itr = remainder_.rbegin(); itr != remainder_.rend(); itr++) {
+				std::cout << *itr;
+			}
 			std::cout << "/";
-			for (auto&& i : divisor_)
-				std::cout << i;
+			for (auto itr = divisor_.rbegin(); itr != divisor_.rend(); itr++) {
+				std::cout << *itr;
+			}
 		}
 	}
 }
