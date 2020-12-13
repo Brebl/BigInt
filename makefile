@@ -85,7 +85,7 @@ $(PREBUILD): $(SUBMODULES)
 	@touch $@
 
 # GNU specific precompiled header: 
-$(GCH): $(PCH)
+$(GCH): $(PCH) $(incdir)calc.h
 	@echo [PRECOMPILED HEADER]
 	$(CXX) -c $(CFLAGS) $<
 	@echo
