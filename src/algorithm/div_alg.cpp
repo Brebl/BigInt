@@ -25,10 +25,10 @@ namespace brb
 		const Calc c_div = num2; //constant divider 
 
 		//calculate whole
-		this->num_ = One.num_;
+		num_ = One.num_;
 		while (num1.bs(num2) == Size::Bigger) {
-			*this += One;
-			num2 += c_div;
+			this->add_alg(One);
+			num2.add_alg(c_div);
 		}
 
 		//calculate part

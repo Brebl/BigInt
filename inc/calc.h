@@ -61,12 +61,14 @@ namespace brb
 		void		finish();
 
 		//algorithms
-		void add_alg(Calc&);
+		void add_alg(Calc);
 		void sub_alg(Calc&);
 		void mul_alg(Calc&);
 		void div_alg(Calc&);
 		void carry(Vector&);
 		void downsize(Calc&);
+		void imp_frac();
+		void prop_frac();
 
 	public:
 		Calc(std::string_view = "0", std::string_view = "", std::string_view = "0", std::string_view = "0");

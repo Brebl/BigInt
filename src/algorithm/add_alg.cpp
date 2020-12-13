@@ -6,7 +6,7 @@
 
 namespace brb
 {
-	void Calc::add_alg(Calc& n2)
+	void Calc::add_alg(Calc n2)
 	{
 		//check capacity
 		if (bs(n2) == Size::Smaller) {
