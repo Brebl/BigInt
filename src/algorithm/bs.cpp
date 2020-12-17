@@ -16,11 +16,11 @@ namespace brb
 	const Calc::Size Calc::bs(const Calc& n2)
 	{
 		//same ammount of numbers
-		if (num_.size() == n2.num_.size()) {
-			for (size_t i = 0; i < num_.size(); i++) {
-				if (num_[i] > n2.num_[i])
+		if (whole_.size() == n2.whole_.size()) {
+			for (size_t i = 0; i < whole_.size(); i++) {
+				if (whole_[i] > n2.whole_[i])
 					return Size::Bigger;
-				if (n2.num_[i] > num_[i])
+				if (n2.whole_[i] > whole_[i])
 					return Size::Smaller;
 			}
 			//fractions check here
@@ -31,10 +31,10 @@ namespace brb
 		}
 
 		//different amount of numbers
-		if (num_.size() > n2.num_.size()) {
+		if (whole_.size() > n2.whole_.size()) {
 			return Size::Bigger;
 		}
-		if (num_.size() < n2.num_.size()) {
+		if (whole_.size() < n2.whole_.size()) {
 			return Size::Smaller;
 		}
 

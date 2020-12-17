@@ -10,22 +10,22 @@ namespace brb
 	{
 		//check capacity
 		if (bs(n2) == Size::Smaller) {
-			num_.reserve(n2.num_.size() + 1);
+			this->numerator_.reserve(n2.numerator_.size() + 1);
 		}
 		else {
-			num_.reserve(num_.capacity() + 1);
+			whole_.reserve(whole_.capacity() + 1);
 		}
 
 		//addition
-		for (size_t i = 0; i < n2.num_.size(); i++) {
-			if (i >= num_.size())
-				num_.emplace_back(n2.num_[i]);
+		for (size_t i = 0; i < n2.whole_.size(); i++) {
+			if (i >= whole_.size())
+				whole_.emplace_back(n2.whole_[i]);
 			else
-				num_[i] += n2.num_[i];
-			if (num_[i] < 0) {
+				whole_[i] += n2.whole_[i];
+			if (whole_[i] < 0) {
 				throw std::overflow_error("add algorithm addition");
 			}
 		}
-		carry(num_);
+		carry(whole_);
 	}
 }

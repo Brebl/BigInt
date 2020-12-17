@@ -13,7 +13,7 @@ namespace brb
 	{
 		//make new objects from remainder and divisor
 		std::stringstream ss;
-		for (auto&& i : n1.remainder_) {
+		for (auto&& i : n1.numerator_) {
 			ss << i;
 		}
 		if (ss.bad()) {
@@ -23,7 +23,7 @@ namespace brb
 		ss.str(std::string());	//reset
 		ss.clear();
 
-		for (auto&& i : n1.divisor_) {
+		for (auto&& i : n1.denominator_) {
 			ss << i;
 		}
 		if (ss.bad()) {
@@ -43,7 +43,7 @@ namespace brb
 				Calc num2 = cntr;
 				const Calc c_div = cntr;
 				//calculate whole
-				rem.num_ = One.num_;
+				rem.whole_ = One.whole_;
 				while (num1.bs(num2) == Size::Bigger) {
 					rem += One;
 					num2 += c_div;
@@ -53,7 +53,7 @@ namespace brb
 					rem -= One;
 					num2 -= c_div;
 					num1 -= num2;
-					rem.remainder_ = num1.num_;		//becomes zero if division goes equal
+					rem.numerator_ = num1.whole_;		//becomes zero if division goes equal
 				}
 			}
 
@@ -62,7 +62,7 @@ namespace brb
 				Calc num2 = cntr;
 				const Calc c_div = cntr;
 				//calculate whole
-				div.num_ = One.num_;
+				div.whole_ = One.whole_;
 				while (num1.bs(num2) == Size::Bigger) {
 					div += One;
 					num2 += c_div;
@@ -72,12 +72,12 @@ namespace brb
 					div -= One;
 					num2 -= c_div;
 					num1 -= num2;
-					div.remainder_ = num1.num_;
+					div.numerator_ = num1.whole_;
 				}
 			}
 
 			//downsize
-			if (rem.remainder_ == Zero.num_ && div.divisor_ == Zero.num_) {
+			if (rem.numerator_ == Zero.whole_ && div.denominator_ == Zero.whole_) {
 				remainder = rem;
 				divisor = div;
 				cntr = Calc("2");
@@ -90,7 +90,7 @@ namespace brb
 			}
 		} while (cntr.bs(remainder) == Size::Smaller);
 
-		n1.remainder_ = remainder.num_;
-		n1.divisor_ = divisor.num_;
+		n1.numerator_ = remainder.whole_;
+		n1.denominator_ = divisor.whole_;
 	}
 }

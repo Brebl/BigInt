@@ -46,11 +46,11 @@ namespace brb
 		};
 
 		//data members
-		Vector	num_;			// number
+		Vector	whole_;			// 
 		Sign	sign_;			// +/-
 		Sign	final_sign_;	// sign after calculations
-		Vector	remainder_;		// fractions
-		Vector	divisor_;		// fractions
+		Vector	numerator_;		// osoittaja
+		Vector	denominator_;	// nimittäjä
 		bool errors_;
 
 		//setup
@@ -62,7 +62,7 @@ namespace brb
 
 		//algorithms
 		void add_alg(Calc);
-		void sub_alg(Calc&);
+		void sub_alg(Calc);
 		void mul_alg(Calc&);
 		void div_alg(Calc&);
 		void carry(Vector&);

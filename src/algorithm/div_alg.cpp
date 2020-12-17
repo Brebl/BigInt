@@ -13,7 +13,7 @@ namespace brb
 	void Calc::div_alg(Calc& num2)
 	{
 		//check num2
-		if (num2.num_ == Zero.num_ && num2.remainder_ == Zero.remainder_) {
+		if (num2.whole_ == Zero.whole_ && num2.numerator_ == Zero.numerator_) {
 			throw std::runtime_error("cannot divide by zero");
 		}
 
@@ -25,7 +25,7 @@ namespace brb
 		const Calc c_div = num2; //constant divider 
 
 		//calculate whole
-		num_ = One.num_;
+		whole_ = One.whole_;
 		while (num1.bs(num2) == Size::Bigger) {
 			this->add_alg(One);
 			num2.add_alg(c_div);
@@ -33,12 +33,12 @@ namespace brb
 
 		//calculate part
 		if (num1.bs(num2) == Size::Smaller) {
-			*this -= One;
-			num2 -= c_div;
-			num1 -= num2;
-			remainder_ = num1.num_;		//becomes zero if division goes equal
-			divisor_ = c_div.num_;
-			if (remainder_ != Zero.num_) {
+			this->sub_alg(One);
+			num2.sub_alg(c_div);
+			num1.sub_alg(num2);
+			numerator_ = num1.whole_;		//becomes zero if division goes equal
+			denominator_ = c_div.whole_;
+			if (numerator_ != Zero.whole_) {
 				downsize(*this);
 			}
 		}

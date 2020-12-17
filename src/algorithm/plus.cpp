@@ -29,6 +29,7 @@ namespace brb
 		{
 			Calc answ = *this;	//in case of throw, no modifications to *this
 			answ.init(num2, Calculation::Add);
+			this->imp_frac();
 			//addition if same signs
 			if (answ.sign_ == num2.sign_) {
 				answ.add_alg(num2);
@@ -37,6 +38,7 @@ namespace brb
 			else {
 				answ.sub_alg(num2);
 			}
+			this->prop_frac();
 			answ.finish();
 			answ.errors_ = false;
 			return *this = answ;

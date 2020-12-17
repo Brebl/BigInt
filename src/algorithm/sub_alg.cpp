@@ -6,33 +6,33 @@
 
 namespace brb
 {
-	void Calc::sub_alg(Calc& num2)
+	void Calc::sub_alg(Calc num2)
 	{
 		//switch bigger number first
 		{
 			Calc org = *this;
 			if(this->bs(num2) == Size::Smaller) {
-				this->num_ = num2.num_;
-				num2.num_ = org.num_;
+				this->whole_ = num2.whole_;
+				num2.whole_ = org.whole_;
 			}
 		}
 
 		//substraction
-		for (size_t i = 0; i < num2.num_.size(); i++) {
-			num_[i] -= num2.num_[i];
-			if (num_[i] < 0) {
-				num_[i + 1]--;
-				num_[i] += 10;
+		for (size_t i = 0; i < num2.whole_.size(); i++) {
+			whole_[i] -= num2.whole_[i];
+			if (whole_[i] < 0) {
+				whole_[i + 1]--;
+				whole_[i] += 10;
 			}
 		}
 
 		//remove front-zeros
-		while (!num_.empty() && num_.back() == 0)
-			num_.pop_back();
+		while (!whole_.empty() && whole_.back() == 0)
+			whole_.pop_back();
 
 		//empty vector not allowed
-		if (num_.empty())
-			num_.emplace_back(0);
+		if (whole_.empty())
+			whole_.emplace_back(0);
 
 	}
 }

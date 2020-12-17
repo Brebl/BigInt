@@ -9,8 +9,8 @@ namespace brb
 	void Calc::finish()
 	{
 		sign_ = final_sign_;
-		if (remainder_ == Zero.num_) {
-			divisor_ = Zero.num_;
+		if (numerator_ == Zero.whole_) {
+			denominator_ = Zero.whole_;
 		}
 		validate(*this);
 	}

@@ -20,15 +20,15 @@ namespace brb
 	{
 		//capacity
 		Vector answ;
-		answ.reserve(num_.size() + num2.num_.size());		
+		answ.reserve(whole_.size() + num2.whole_.size());		
 
 		//multiplication
 		size_t ind = 0;
 		short temp = 0;
-		for (size_t i = 0; i < num_.size(); i++) {
-			for (size_t j = 0; j < num2.num_.size(); j++) {
+		for (size_t i = 0; i < whole_.size(); i++) {
+			for (size_t j = 0; j < num2.whole_.size(); j++) {
 				ind = j + i;
-				temp = num_[i] * num2.num_[j];
+				temp = whole_[i] * num2.whole_[j];
 				do {
 					if (ind >= answ.size())
 						answ.emplace_back(temp % 10);
@@ -44,6 +44,6 @@ namespace brb
 			carry(answ);	//prevent overflow with large numbers
 		}
 	
-		this->num_ = answ;
+		this->whole_ = answ;
 	}
 }

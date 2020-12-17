@@ -16,20 +16,20 @@ namespace brb
 		else {
 			sign_ = Sign::Positive;
 		}
-		num_.clear();
-		divisor_.clear();
-		remainder_.clear();
+		whole_.clear();
+		denominator_.clear();
+		numerator_.clear();
 
 		for (auto itr = number.rbegin(); itr != number.rend(); itr++) {
-			num_.emplace_back(helper(*itr));
+			whole_.emplace_back(helper(*itr));
 		}
 
 		for (auto itr = remainder.rbegin(); itr != remainder.rend(); itr++) {
-			remainder_.emplace_back(helper(*itr));
+			numerator_.emplace_back(helper(*itr));
 		}
 
 		for (auto itr = divisor.rbegin(); itr != divisor.rend(); itr++) {
-			divisor_.emplace_back(helper(*itr));
+			denominator_.emplace_back(helper(*itr));
 		}
 	}
 }
