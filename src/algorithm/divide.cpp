@@ -16,9 +16,11 @@ namespace brb
 		{
 			Calc answ = *this;	//in case of throw, no modifications to *this
 			answ.init(num2, Calculation::Div);
-			answ.div_alg(num2);
+
+			answ.mul_alg(answ.denominator_, num2.numerator_);
+			answ.mul_alg(answ.numerator_, num2.denominator_);
+
 			answ.finish();
-			*this = answ;
 			answ.errors_ = false;
 			return *this = answ;
 		}

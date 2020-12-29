@@ -12,6 +12,7 @@ namespace brb
 		if (numerator_ == Zero.whole_) {
 			denominator_ = Zero.whole_;
 		}
-		validate(*this);
+		this->prop_frac();
+		this->validate();
 	}
 }

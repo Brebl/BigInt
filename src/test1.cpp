@@ -38,7 +38,8 @@ bool test1()
 	data_in.close();
 
 	//run tests
-	for(auto&& i: vtest){
+		
+	for(auto i: vtest){
 		std::cout << i.num1.getValue();
 		if(i.calculation == "+"){
 			std::cout << " + ";

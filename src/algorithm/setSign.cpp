@@ -11,7 +11,7 @@
 
 namespace brb
 {
-	const Calc::Sign Calc::setSign(const Calculation cal, const Size n2, const Calc& a, const Calc& b)
+	const Calc::Sign Calc::setSign(const Calculation cal, const Bs n2, const Calc& a, const Calc& b)
 	{
 		constexpr auto pos{ Sign::Positive };
 		constexpr auto neg{ Sign::Negative };
@@ -19,7 +19,7 @@ namespace brb
 		switch (cal) {
 		case Calculation::Add:	//addition
 			switch (n2) {
-			case Size::Bigger:	// a > b
+			case Bs::Bigger:	// a > b
 				if (a.sign_ == pos && b.sign_ == pos)	//++
 					return pos;
 				if (a.sign_ == neg && b.sign_ == neg)	//--
@@ -28,7 +28,7 @@ namespace brb
 					return pos;
 				if (a.sign_ == neg && b.sign_ == pos)	//-+
 					return neg;
-			case Size::Smaller:	// a < b
+			case Bs::Smaller:	// a < b
 				if (a.sign_ == pos && b.sign_ == pos)	//++
 					return pos;
 				if (a.sign_ == neg && b.sign_ == neg)	//--
@@ -43,7 +43,7 @@ namespace brb
 
 		case Calculation::Sub:	//substract
 			switch (n2) {
-			case Size::Bigger:	//a > b
+			case Bs::Bigger:	//a > b
 				if (a.sign_ == pos && b.sign_ == pos)	//++
 					return pos;
 				if (a.sign_ == neg && b.sign_ == neg)	//--
@@ -52,7 +52,7 @@ namespace brb
 					return pos;
 				if (a.sign_ == neg && b.sign_ == pos)	//-+
 					return neg;
-			case Size::Smaller:	//a < b
+			case Bs::Smaller:	//a < b
 				if (a.sign_ == pos && b.sign_ == pos)	//++
 					return neg;
 				if (a.sign_ == neg && b.sign_ == neg)	//--
@@ -67,7 +67,7 @@ namespace brb
 
 		case Calculation::Mul:	//multiply
 			switch (n2) {
-			case Size::Bigger:	//a > b
+			case Bs::Bigger:	//a > b
 				if (a.sign_ == pos && b.sign_ == pos)	//++
 					return pos;
 				if (a.sign_ == neg && b.sign_ == neg)	//--
@@ -76,7 +76,7 @@ namespace brb
 					return neg;
 				if (a.sign_ == neg && b.sign_ == pos)	//-+
 					return neg;
-			case Size::Smaller:	//a < b
+			case Bs::Smaller:	//a < b
 				if (a.sign_ == pos && b.sign_ == pos)	//++
 					return pos;
 				if (a.sign_ == neg && b.sign_ == neg)	//--
@@ -91,7 +91,7 @@ namespace brb
 
 		case Calculation::Div:	//divide
 			switch (n2) {
-			case Size::Bigger:	//a > b
+			case Bs::Bigger:	//a > b
 				if (a.sign_ == pos && b.sign_ == pos)	//++
 					return pos;
 				if (a.sign_ == neg && b.sign_ == neg)	//--
@@ -100,7 +100,7 @@ namespace brb
 					return neg;
 				if (a.sign_ == neg && b.sign_ == pos)	//-+
 					return neg;
-			case Size::Smaller:	//a < b
+			case Bs::Smaller:	//a < b
 				if (a.sign_ == pos && b.sign_ == pos)	//++
 					return pos;
 				if (a.sign_ == neg && b.sign_ == neg)	//--

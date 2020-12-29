@@ -16,19 +16,19 @@ Todo:
 
 namespace brb
 {
-	void Calc::mul_alg(Calc& num2)
+	void Calc::mul_alg(Vector& n1, const Vector& n2)
 	{
 		//capacity
 		Vector answ;
-		answ.reserve(whole_.size() + num2.whole_.size());		
+		answ.reserve(n1.size() + n2.size());
 
 		//multiplication
 		size_t ind = 0;
 		short temp = 0;
-		for (size_t i = 0; i < whole_.size(); i++) {
-			for (size_t j = 0; j < num2.whole_.size(); j++) {
+		for (size_t i = 0; i < n1.size(); i++) {
+			for (size_t j = 0; j < n2.size(); j++) {
 				ind = j + i;
-				temp = whole_[i] * num2.whole_[j];
+				temp = n1[i] * n2[j];
 				do {
 					if (ind >= answ.size())
 						answ.emplace_back(temp % 10);
@@ -43,7 +43,6 @@ namespace brb
 			}
 			carry(answ);	//prevent overflow with large numbers
 		}
-	
-		this->whole_ = answ;
+		n1 = answ;
 	}
 }

@@ -28,7 +28,7 @@ namespace brb
 {
 	class Calc {
 		using Vector = std::vector<short>;
-	private:
+	protected:
 		enum class Calculation {
 			Add,	//addition
 			Sub,	//substraction
@@ -39,7 +39,7 @@ namespace brb
 			Positive,
 			Negative
 		};
-		enum class Size {
+		enum class Bs {
 			Bigger,
 			Smaller,
 			Equal
@@ -51,24 +51,25 @@ namespace brb
 		Sign	final_sign_;	// sign after calculations
 		Vector	numerator_;		// osoittaja
 		Vector	denominator_;	// nimittäjä
-		bool errors_;
+		bool errors_;			// fail-flag
 
 		//setup
-		void		init(const Calc&, const Calculation);
-		const Size	bs(const Calc&);	//bigger/smaller
-		const Sign	setSign(const Calculation, const Size, const Calc&, const Calc&);	//sets correct sign for result (+/-)
-		void		validate(const Calc&);
-		void		finish();
+		void				init(Calc&, const Calculation);
+		static const Bs		compare(const Vector&, const Vector&);
+		static const Sign	setSign(const Calculation, const Bs, const Calc&, const Calc&);	//sets correct sign for result (+/-)
+		void				validate();
+		void				finish();
 
 		//algorithms
-		void add_alg(Calc);
-		void sub_alg(Calc);
-		void mul_alg(Calc&);
-		void div_alg(Calc&);
+		void add_alg(Vector&, const Vector&);
+		void sub_alg(Vector&, Vector);
+		void mul_alg(Vector&, const Vector&);
+		void div_alg(const Vector&, const Vector&, Vector&, Vector&, Vector&);
 		void carry(Vector&);
 		void downsize(Calc&);
 		void imp_frac();
 		void prop_frac();
+		static void lcd(Calc&, Calc&);
 
 	public:
 		Calc(std::string_view = "0", std::string_view = "", std::string_view = "0", std::string_view = "0");

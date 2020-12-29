@@ -19,7 +19,10 @@ namespace brb
 		{
 			Calc answ = *this;	//in case of throw, no modifications to *this
 			answ.init(num2, Calculation::Mul);
-			answ.mul_alg(num2);
+
+			answ.mul_alg(answ.numerator_, num2.numerator_);
+			answ.mul_alg(answ.denominator_, num2.denominator_);
+			
 			answ.finish();
 			answ.errors_ = false;
 			return *this = answ;

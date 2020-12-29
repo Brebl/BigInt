@@ -10,39 +10,30 @@ update:
 
 namespace brb
 {
-	void Calc::div_alg(Calc& num2)
+	void Calc::div_alg(const Vector& n1, const Vector& n2, Vector& whole, Vector& numer, Vector& denom)
 	{
 		//check num2
-		if (num2.whole_ == Zero.whole_ && num2.numerator_ == Zero.numerator_) {
+		if (n2 == Zero.whole_) {
 			throw std::runtime_error("cannot divide by zero");
 		}
 
 		//settings
-		const Sign fi_sign = this->final_sign_;
-		this->sign_ = Sign::Positive;
-		num2.sign_ = Sign::Positive;
-		Calc num1 = *this;
-		const Calc c_div = num2; //constant divider 
+		Vector temp = Zero.whole_; 
+		whole = Zero.whole_;
+		numer = n1;
+		denom = n2;
 
 		//calculate whole
-		whole_ = One.whole_;
-		while (num1.bs(num2) == Size::Bigger) {
-			this->add_alg(One);
-			num2.add_alg(c_div);
+		while (compare(n1, temp) == Bs::Bigger) {
+			add_alg(whole, One.whole_);
+			add_alg(temp, n2);
 		}
 
 		//calculate part
-		if (num1.bs(num2) == Size::Smaller) {
-			this->sub_alg(One);
-			num2.sub_alg(c_div);
-			num1.sub_alg(num2);
-			numerator_ = num1.whole_;		//becomes zero if division goes equal
-			denominator_ = c_div.whole_;
-			if (numerator_ != Zero.whole_) {
-				downsize(*this);
-			}
+		if (compare(n1, temp) == Bs::Smaller) {
+			sub_alg(whole, One.whole_);
+			sub_alg(temp, n2);
+			sub_alg(numer, temp);		//becomes zero if division goes equal
 		}
-		
-		this->final_sign_ = fi_sign;
 	}
 }

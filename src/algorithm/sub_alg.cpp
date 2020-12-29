@@ -2,37 +2,33 @@
 // function:	performs substitution
 // return:		true(success) OR false(failure)
 //-------------------------------------------------------------------------------------------------
+
 #include "pch.h"
 
 namespace brb
 {
-	void Calc::sub_alg(Calc num2)
+	void Calc::sub_alg(Vector& n1, Vector n2)
 	{
 		//switch bigger number first
-		{
-			Calc org = *this;
-			if(this->bs(num2) == Size::Smaller) {
-				this->whole_ = num2.whole_;
-				num2.whole_ = org.whole_;
-			}
+		if (compare(n1, n2) == Bs::Smaller) {
+			n1.swap(n2);
 		}
 
 		//substraction
-		for (size_t i = 0; i < num2.whole_.size(); i++) {
-			whole_[i] -= num2.whole_[i];
-			if (whole_[i] < 0) {
-				whole_[i + 1]--;
-				whole_[i] += 10;
+		for (size_t i = 0; i< n2.size(); i++) {
+			n1[i] -= n2[i];
+			if (n1[i] < 0) {
+				n1[i + 1]--;
+				n1[i] += 10;
 			}
 		}
 
 		//remove front-zeros
-		while (!whole_.empty() && whole_.back() == 0)
-			whole_.pop_back();
+		while (!n1.empty() && n1.back() == 0)
+			n1.pop_back();
 
 		//empty vector not allowed
-		if (whole_.empty())
-			whole_.emplace_back(0);
-
+		if (n1.empty())
+			n1.emplace_back(0);
 	}
 }

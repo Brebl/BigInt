@@ -19,13 +19,14 @@ namespace brb
 		{
 			Calc answ = *this;	//in case of throw, no modifications to *this
 			answ.init(num2, Calculation::Sub);
+
 			//substraction if same signs
 			if (answ.sign_ == num2.sign_) {
-				answ.sub_alg(num2);
+				answ.sub_alg(answ.numerator_, num2.numerator_);
 			}
 			//addition if different signs
 			else {
-				answ.add_alg(num2);
+				answ.add_alg(answ.numerator_, num2.numerator_);
 			}
 			answ.finish();
 			answ.errors_ = false;

@@ -11,7 +11,7 @@ namespace brb
 {
 	const std::string Calc::getValue(int a, bool sep) const
 	{
-		std::stringstream output;
+		std::ostringstream output;
 		if (sign_ == Sign::Negative) {
 			output << "-";
 		}
