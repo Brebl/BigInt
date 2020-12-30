@@ -45,6 +45,9 @@ namespace brb
 			Equal
 		};
 
+		static const Vector Zero;
+		static const Vector One;
+
 		//data members
 		Vector	whole_;			// 
 		Sign	sign_;			// +/-
@@ -96,10 +99,9 @@ namespace brb
 
 		Calc operator /=(Calc);				// A /= B
 		Calc operator /(const Calc&) const;	// A = B / C
+
 	};
 
-	extern const Calc Zero;
-	extern const Calc One;
 	extern const Calc Pi;
 }
 

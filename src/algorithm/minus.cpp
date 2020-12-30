@@ -49,7 +49,7 @@ namespace brb
 
 	Calc& Calc::operator --()	//Predecrement
 	{
-		*this -= One;
+		*this -= Calc{"1"};
 		return *this;
 	}
 

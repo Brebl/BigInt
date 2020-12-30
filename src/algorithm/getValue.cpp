@@ -49,7 +49,7 @@ namespace brb
 		//std::cout << "\nNumber of digits: " << num_.size() << std::endl;
 
 		//fractions
-		if (numerator_ != Zero.whole_) {
+		if (numerator_ != Zero) {
 			output << " ";
 			for (auto itr = numerator_.rbegin(); itr != numerator_.rend(); itr++) {
 				output << *itr;

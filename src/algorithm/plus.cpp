@@ -60,7 +60,7 @@ namespace brb
 
 	Calc& Calc::operator ++()	//Preincrement
 	{
-		*this += One;
+		*this += Calc{"1"};
 		return *this;
 	}
 

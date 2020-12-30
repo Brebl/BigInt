@@ -8,11 +8,11 @@ namespace brb
 {
     void Calc::lcd(Calc& a, Calc& b)
     {
-        if(a.whole_ != Zero.whole_){
+        if(a.whole_ != Zero){
             brb::log("not improper fraction", "");
             a.imp_frac();
         }
-        if(b.whole_ != Zero.whole_){
+        if(b.whole_ != Zero){
             brb::log("not improper fraction", "");
             b.imp_frac();
         }

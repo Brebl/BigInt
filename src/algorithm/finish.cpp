@@ -9,8 +9,8 @@ namespace brb
 	void Calc::finish()
 	{
 		sign_ = final_sign_;
-		if (numerator_ == Zero.whole_) {
-			denominator_ = Zero.whole_;
+		if (numerator_ == Zero) {
+			denominator_ = Zero;
 		}
 		this->prop_frac();
 		this->validate();
