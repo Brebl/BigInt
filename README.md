@@ -1,5 +1,5 @@
-# BigInt
-BigInt class for basic calculations  
+# BigNum
+BigNum class for Arbitrary-precision arithmetics  
   
 Supports following:  
 linux  
@@ -8,7 +8,8 @@ windows x64, x86
 addition  
 substraction  
 multiplication  
-division, fractions  
+division  
+fractions  
 fraction downsizing  
   
 Supports operators:  
