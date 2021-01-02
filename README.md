@@ -20,7 +20,7 @@ boolean, !=, ==
 /, /=  
   
 # Compile  
-`git clone https://github.com/Brebl/BigInt.git`  
+`git clone https://github.com/Brebl/BigNum.git`  
 `git submodule update --init`  
 `make`  
   
